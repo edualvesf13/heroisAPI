@@ -18,4 +18,9 @@ describe('Suite de manipulão de Heróis', () => {
         const [resultado] = await database.listar(expected.id)
         deepEqual(resultado, expected)
     })
+    it('Deve cadastrar um herói, usando arquivos', async () => {
+        const expected = DEFAULT_ITEM_CADASTRAR
+        //
+        deepEqual(null, expected)
+    })
 })
