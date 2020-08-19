@@ -13,7 +13,7 @@ const DEFAULT_ITEM_CADASTRAR = {
 
 describe('Suite de manipulão de Heróis', () => {
 
-    before( async () => {
+   before( async () => {
         await database.cadastrar(DEFAULT_ITEM_CADASTRAR)
     } )
 
