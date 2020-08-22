@@ -11,7 +11,8 @@ async function main() {
 
         .option('-c, --cadastrar', "Cadastrar um Herói")
         .option('-l, --listar', "Listar um Herói")
-        .option('-r, --remover [value]', "Remove um Herói pelo ID")
+        .option('-r, --remover', "Remove um Herói pelo ID")
+        .option('-a, --atualizar [value]', "Atualizar um Herói pelo ID")
 
         .parse(process.argv)
 
@@ -48,6 +49,20 @@ async function main() {
             }
 
             console.log('Herói removido com sucesso!');
+        }
+
+        if (Commander.atualizar) {
+            const idParaAtualizar = parseInt(Commander.atualizar)
+            const dado = JSON.stringify(heroi)
+            const heroiAtualizar = JSON.parse(dado)
+            const resultado = await Database.atualizar(idParaAtualizar, heroiAtualizar)
+
+            if (!resultado) {
+                console.error('Não foi possível atualizar o Heróis!')
+                return
+            }
+
+            console.log('Herói atualizado com sucesso!')
         }
     } catch (error) {
         console.error('DEU RUIM ', error);
