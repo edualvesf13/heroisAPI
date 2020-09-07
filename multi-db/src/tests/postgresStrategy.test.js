@@ -42,7 +42,9 @@ describe('Postgres Strategy', function () {
             ...MOCK_HEROI_ATUALIZAR,
             nome: 'Mulher Maravilha'
         }
-        const result = await context.update(itemAtualizar.id, novoItem)
-        assert.deepEqual(result.nome, novoItem.nome)
+        const [result] = await context.update(itemAtualizar.id, novoItem)
+        const [itemAtualizado] = await context.read({ id: itemAtualizar.id })
+        assert.deepEqual(result, 1)
+        assert.deepEqual(itemAtualizado.nome, novoItem.nome)
     })
 })
